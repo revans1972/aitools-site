@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Tools for Small Business — Smart Tools, Smarter Business</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0B0F1A;
+      --bg-card: #121726;
+      --bg-card-hover: #1A2035;
+      --bg-nav: rgba(11,15,26,0.85);
+      --emerald: #10B981;
+      --emerald-glow: rgba(16,185,129,0.15);
+      --emerald-dim: #059669;
+      --white: #F4EEE4;
+      --muted: #8B92A5;
+      --border: rgba(255,255,255,0.06);
+      --radius: 16px;
+      --radius-sm: 10px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* Nav */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: var(--bg-nav);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+    }
+    nav .container {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .logo { font-weight: 700; font-size: 18px; letter-spacing: -0.02em; text-decoration: none; color: var(--white); }
+    .logo span { color: var(--emerald); }
+    .nav-links { display: flex; gap: 32px; align-items: center; }
+    .nav-links a { text-decoration: none; color: var(--muted); font-size: 14px; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--white); }
+
+    /* Hero */
+    .hero {
+      padding: 160px 0 100px;
+      text-align: center;
+      background: radial-gradient(ellipse at 50% 0%, var(--emerald-glow) 0%, transparent 60%);
+    }
+    .hero-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: rgba(16,185,129,0.1);
+      border: 1px solid rgba(16,185,129,0.2);
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--emerald);
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .hero h1 span { color: var(--emerald); }
+    .hero p {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      background: var(--emerald);
+      color: #0B0F1A;
+      font-weight: 600;
+      font-size: 15px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .hero-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 30px rgba(16,185,129,0.3); }
+
+    /* Sections */
+    section { padding: 80px 0; }
+    .section-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--emerald);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .section-sub {
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 500px;
+      margin-bottom: 48px;
+    }
+
+    /* Tool Grid */
+    .tool-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 20px;
+    }
+    .tool-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      transition: all 0.25s;
+      cursor: default;
+      position: relative;
+    }
+    .tool-card:hover {
+      background: var(--bg-card-hover);
+      border-color: rgba(16,185,129,0.2);
+      transform: translateY(-2px);
+    }
+    .tool-card .cat {
+      display: inline-block;
+      padding: 3px 10px;
+      background: rgba(16,185,129,0.08);
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--emerald);
+      letter-spacing: 0.04em;
+      margin-bottom: 16px;
+    }
+    .tool-card h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+    .tool-card p { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 20px; }
+    .tool-card .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 20px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-sm);
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .tool-card .btn:hover {
+      background: var(--emerald);
+      border-color: var(--emerald);
+      color: #0B0F1A;
+    }
+    .tool-card .btn em { font-style: normal; color: var(--emerald); font-weight: 600; margin-right: 4px; }
+    .tool-card:hover .btn em { color: #0B0F1A; }
+    .comm {
+      position: absolute;
+      top: 28px;
+      right: 28px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--emerald);
+      padding: 3px 10px;
+      background: rgba(16,185,129,0.08);
+      border-radius: 100px;
+    }
+
+    /* Articles */
+    .article-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 20px;
+    }
+    .article-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      transition: all 0.25s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .article-card:hover {
+      background: var(--bg-card-hover);
+      border-color: rgba(16,185,129,0.2);
+      transform: translateY(-2px);
+    }
+    .article-card .date { font-size: 12px; color: var(--muted); margin-bottom: 12px; }
+    .article-card h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; line-height: 1.4; }
+    .article-card p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .article-card .read { color: var(--emerald); font-size: 13px; font-weight: 500; margin-top: 16px; display: inline-block; }
+
+    /* Categories */
+    .cats { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 40px; }
+    .cat-btn {
+      padding: 8px 18px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 500;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .cat-btn:hover, .cat-btn.active {
+      background: rgba(16,185,129,0.1);
+      border-color: rgba(16,185,129,0.3);
+      color: var(--emerald);
+    }
+
+    /* Newsletter */
+    .newsletter {
+      background: linear-gradient(135deg, rgba(16,185,129,0.05), transparent);
+      border: 1px solid rgba(16,185,129,0.1);
+      border-radius: var(--radius);
+      padding: 48px;
+      text-align: center;
+    }
+    .newsletter h2 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+    .newsletter p { color: var(--muted); margin-bottom: 24px; font-size: 15px; }
+    .newsletter-form { display: flex; gap: 8px; max-width: 420px; margin: 0 auto; }
+    .newsletter-form input {
+      flex: 1;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--white);
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .newsletter-form input:focus { border-color: var(--emerald); }
+    .newsletter-form button {
+      padding: 12px 24px;
+      background: var(--emerald);
+      color: #0B0F1A;
+      font-weight: 600;
+      font-size: 14px;
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .newsletter-form button:hover { background: var(--emerald-dim); }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 48px 0 32px;
+      margin-top: 40px;
+    }
+    footer .grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    footer h4 { font-size: 13px; font-weight: 600; margin-bottom: 16px; color: var(--white); }
+    footer a { display: block; color: var(--muted); text-decoration: none; font-size: 13px; margin-bottom: 10px; transition: color 0.2s; }
+    footer a:hover { color: var(--white); }
+    footer .brand p { color: var(--muted); font-size: 13px; margin-top: 12px; max-width: 280px; line-height: 1.7; }
+    footer .bottom { border-top: 1px solid var(--border); padding-top: 24px; font-size: 12px; color: var(--muted); text-align: center; }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .tool-grid, .article-list { grid-template-columns: 1fr; }
+      .hero { padding: 120px 0 60px; }
+      .newsletter-form { flex-direction: column; }
+      footer .grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+      section { padding: 48px 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <div class="container">
+      <a href="/" class="logo">ai<span>tools</span></a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="#tools">Tools</a>
+        <a href="#reviews">Reviews</a>
+        <a href="/articles/best-ai-tools-small-business-2026.html">Articles</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">📊 Curated for Small Business Owners</div>
+      <h1>The Best <span>AI Tools</span> for<br>Your Small Business</h1>
+      <p>Discover the tools that save time, cut costs, and help you compete with the big guys — without a technical degree or a massive budget.</p>
+      <a href="#tools" class="hero-cta">Browse Tools →</a>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section id="tools">
+    <div class="container">
+      <div class="section-label">Categories</div>
+      <h2 class="section-title">Find the Right Tool for the Job</h2>
+      <p class="section-sub">Every tool here has been tested and recommended for small business use. No fluff, no enterprise pricing.</p>
+      <div class="cats">
+        <a href="#tools" class="cat-btn active">All</a>
+        <a href="#tools" class="cat-btn">Writing</a>
+        <a href="#tools" class="cat-btn">Design</a>
+        <a href="#tools" class="cat-btn">Productivity</a>
+        <a href="#tools" class="cat-btn">Video</a>
+      </div>
+
+      <div class="tool-grid">
+        <div class="tool-card">
+          <span class="cat">Design</span>
+          <span class="comm">20% Recurring</span>
+          <h3>Canva</h3>
+          <p>AI-powered design platform that lets anyone create stunning graphics, presentations, and social media content — no design skills needed.</p>
+          <a href="#" class="btn"><em>Try Canva Free</em> →</a>
+        </div>
+
+        <div class="tool-card">
+          <span class="cat">Writing</span>
+          <span class="comm">30% Lifetime</span>
+          <h3>Writesonic</h3>
+          <p>Generate blog posts, emails, ad copy, and social media content in seconds. Trained on high-converting copy patterns.</p>
+          <a href="#" class="btn"><em>Try Writesonic</em> →</a>
+        </div>
+
+        <div class="tool-card">
+          <span class="cat">Productivity</span>
+          <span class="comm">$28 CPA</span>
+          <h3>ClickUp</h3>
+          <p>All-in-one project management with AI features. Tasks, docs, goals, and chat in one place. Free tier available.</p>
+          <a href="#" class="btn"><em>Try ClickUp Free</em> →</a>
+        </div>
+
+        <div class="tool-card">
+          <span class="cat">Productivity</span>
+          <span class="comm">40% / 12mo</span>
+          <h3>Reclaim.ai</h3>
+          <p>AI calendar scheduling that protects your focus time, automates meeting scheduling, and helps you maintain work-life balance.</p>
+          <a href="#" class="btn"><em>Try Reclaim.ai</em> →</a>
+        </div>
+
+        <div class="tool-card">
+          <span class="cat">Design</span>
+          <span class="comm">30% Recurring</span>
+          <h3>Gamma</h3>
+          <p>AI-powered presentations that create stunning decks from a single prompt. Replace PowerPoint and Keynote forever.</p>
+          <a href="#" class="btn"><em>Try Gamma Free</em> →</a>
+        </div>
+
+        <div class="tool-card">
+          <span class="cat">Video</span>
+          <span class="comm">30% Recurring</span>
+          <h3>Synthesia</h3>
+          <p>Create professional AI videos with realistic avatars. No cameras, no actors, no studios. Just type and publish.</p>
+          <a href="#" class="btn"><em>Try Synthesia</em> →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest Reviews -->
+  <section id="reviews">
+    <div class="container">
+      <div class="section-label">Latest Reviews</div>
+      <h2 class="section-title">In-Depth Tool Reviews</h2>
+      <p class="section-sub">Hands-on reviews, honest comparisons, and practical advice — written for business owners, not techies.</p>
+      <div class="article-list">
+        <a href="/articles/best-ai-tools-small-business-2026.html" class="article-card">
+          <div class="date">Jul 19, 2026</div>
+          <h3>10 Best AI Tools for Small Business Owners in 2026</h3>
+          <p>We tested 40+ tools so you don't have to. Here are the ones that actually save time and make money.</p>
+          <span class="read">Read Review →</span>
+        </a>
+        <a href="#" class="article-card">
+          <div class="date">Coming Soon</div>
+          <h3>Canva vs Writesonic vs Copy.ai: Which AI Writing Tool Wins?</h3>
+          <p>Three tools, three approaches. We compare pricing, features, and real-world results for small businesses.</p>
+          <span class="read">Coming Soon →</span>
+        </a>
+        <a href="#" class="article-card">
+          <div class="date">Coming Soon</div>
+          <h3>How to Automate Your Small Business with AI (No Tech Skills)</h3>
+          <p>A step-by-step guide to setting up AI tools that run your marketing, scheduling, and admin work automatically.</p>
+          <span class="read">Coming Soon →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section>
+    <div class="container">
+      <div class="newsletter">
+        <h2>Get New Tools Delivered</h2>
+        <p>Weekly roundup of the best AI tools for small business. No spam, just tools that work.</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="your@email.com" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="grid">
+        <div class="brand">
+          <a href="/" class="logo">ai<span>tools</span></a>
+          <p>Curating the best AI tools for small business owners since 2026. Smart tools, smarter business.</p>
+        </div>
+        <div>
+          <h4>Categories</h4>
+          <a href="#">Writing</a>
+          <a href="#">Design</a>
+          <a href="#">Productivity</a>
+          <a href="#">Video</a>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <a href="#">About</a>
+          <a href="#">Contact</a>
+          <a href="#">Privacy</a>
+        </div>
+        <div>
+          <h4>Disclosure</h4>
+          <p style="color: var(--muted); font-size: 12px; line-height: 1.6;">Some links on this site are affiliate links. We may earn a commission if you purchase through them, at no extra cost to you.</p>
+        </div>
+      </div>
+      <div class="bottom">
+        © 2026 aitools.grupoestato.com — Independent AI Tool Reviews
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
