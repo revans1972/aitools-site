@@ -46,7 +46,8 @@
       display: flex; align-items: center; justify-content: space-between;
       height: 64px;
     }
-    .logo { font-weight: 700; font-size: 18px; letter-spacing: -0.02em; text-decoration: none; color: var(--white); }
+    .logo { font-weight: 700; font-size: 18px; letter-spacing: -0.02em; text-decoration: none; color: var(--white); display: flex; align-items: center; gap: 10px; }
+    .logo img { height: 32px; width: auto; }
     .logo span { color: var(--emerald); }
     .nav-links { display: flex; gap: 32px; align-items: center; }
     .nav-links a { text-decoration: none; color: var(--muted); font-size: 14px; font-weight: 500; transition: color 0.2s; }
@@ -305,7 +306,7 @@
   <!-- Nav -->
   <nav>
     <div class="container">
-      <a href="/" class="logo">ai<span>tools</span></a>
+      <a href="/" class="logo"><img src="AITOOLSLOGO.png" alt="AI Tools"></a>
       <div class="nav-links">
         <a href="/">Home</a>
         <a href="#tools">Tools</a>
